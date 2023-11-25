@@ -15,6 +15,7 @@ const crypto = require('crypto');
 const axios = require('axios');
 const corsOptions = require('./config/corsOptions');
 const { rateLimit } = require('express-rate-limit');
+
 const port = 8080;
 
 const limiter = rateLimit({
@@ -23,6 +24,7 @@ const limiter = rateLimit({
 });
 
 // Middleware
+app.set('trust proxy', true);
 app.use(limiter);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
